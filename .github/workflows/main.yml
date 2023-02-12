@@ -4,21 +4,13 @@ jobs:
   client_hello_world:
     runs-on: ubuntu-latest
     name: Fires up the client to talk to the app.
-    container: python:3.7-alpine
-    services:
-      redis:
-        image: "redis:alpine"
+    container: docker
     steps:
       - name: "Checkout"
         uses: actions/checkout@v3
-      - name: "Invokes the compose action."
-        id: compose
-        uses: ./create-app
-      - name: "Sets up the client"
-        id: setup
-        run: pip install requests
-      - name: "Points the client to the app"
-        id: entrypoint
-        env:
-          ENDPOINT: localhost:5000
-        run: python3 simple_client.py
+      - name: "Builds the docker composed image"
+        id: build
+        run: docker compose build
+      - name: "Creates the docker compose image and runs the tests"
+        id: run-test
+        run: docker compose up --abort-on-container-exit --exit-code-from client

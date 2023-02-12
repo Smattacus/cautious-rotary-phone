@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  client:
+    environment:
+      APP_ENDPOINT: web:5000
+    depends_on:
+      - web
+    build: ./
+    networks:
+      - front-tier
+  web:
+    depends_on: 
+      - redis
+    build: ./create-app
+    ports:
+      - "8000:5000"
+    networks:
+      - front-tier
+      - back-tier
+  redis:
+    image: "redis:alpine"
+    networks:
+      - back-tier
+networks:
+  front-tier: {}
+  back-tier: {}
