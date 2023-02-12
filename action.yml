@@ -1,0 +1,6 @@
+# action.yml
+name: 'create-app'
+description: 'Sets up the application for the client to use. Requires service containers to be up.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
