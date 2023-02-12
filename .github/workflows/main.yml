@@ -1,0 +1,22 @@
+on: [push]
+
+jobs:
+  client_hello_world:
+    runs-on: ubuntu-latest
+    name: Fires up the client to talk to the app.
+    container: python:3.7-alpine
+    services:
+      redis:
+        image: "redis:alpine"
+    steps:
+      - name: "Invokes the compose action."
+        id: compose
+        uses: actions/create-app@v1
+      - name: "Sets up the client"
+        id: setup
+        run: pip install -r requirements.txt
+      - name: "Points the client to the app"
+        id: entrypoint
+        env:
+          ENDPOINT: localhost:5000
+        run: python3 simple_client.py
