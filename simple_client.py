@@ -24,5 +24,5 @@ config = APIConfig()
 
 for i in range(5):
     logger.info(f"Sending request to {config}")
-    r = requests.get(f"{config}")
+    r = requests.get(f"bad_endpoint")
     logging.info(f"Request returned! Result: {r}: {r.text.rstrip(newline)}")
