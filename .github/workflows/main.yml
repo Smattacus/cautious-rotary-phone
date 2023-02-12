@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: "Invokes the compose action."
         id: compose
-        uses: actions/create-app@v1
+        uses: ../../create-app
       - name: "Sets up the client"
         id: setup
         run: pip install -r requirements.txt
