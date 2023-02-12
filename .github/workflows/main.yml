@@ -3,7 +3,7 @@ on: [push]
 jobs:
   client_hello_world:
     runs-on: ubuntu-latest
-    name: Fires up the client to talk to the app.
+    name: Tests a client by running a docker compose
     container: docker
     steps:
       - name: "Checkout"
@@ -11,6 +11,6 @@ jobs:
       - name: "Builds the docker composed image"
         id: build
         run: docker compose build
-      - name: "Creates the docker compose image and runs the tests"
+      - name: "Brings up the docker compose and runs the tests"
         id: run-test
         run: docker compose up --abort-on-container-exit --exit-code-from client
