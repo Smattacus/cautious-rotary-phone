@@ -1,2 +1,0 @@
-ls -lh
-flask run
