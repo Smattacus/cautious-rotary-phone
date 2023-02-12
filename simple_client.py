@@ -18,6 +18,8 @@ class APIConfig:
     def __str__(self):
         return f"{self._protocol}://{self._endpoint}/"
 
+newline = '\n'
+
 for i in range(5):
     r = requests.get(f"{APIConfig()}")
-    logging.info(f"Request returned! Result: {r}")
+    logging.info(f"Request returned! Result: {r}: {r.text.rstrip(newline)}")
