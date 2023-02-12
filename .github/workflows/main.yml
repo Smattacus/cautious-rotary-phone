@@ -16,7 +16,7 @@ jobs:
         uses: ./create-app
       - name: "Sets up the client"
         id: setup
-        run: pip install -r requirements.txt
+        run: pip install requests
       - name: "Points the client to the app"
         id: entrypoint
         env:
